@@ -9,9 +9,8 @@ class ClubCard extends StatefulWidget {
 class _ClubCardState extends State<ClubCard> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        height: 500,
+    return  Container(
+margin: EdgeInsets.only(left: 10 ,right:10 ),
         width: 200,
         child: Column(
 crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +58,7 @@ crossAxisAlignment: CrossAxisAlignment.start,
             )
           ],
         ),
-      ),
-    );
+      );
+
   }
 }

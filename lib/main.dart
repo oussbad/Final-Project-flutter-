@@ -4,7 +4,9 @@ import 'package:untitled1/startUpScreen.dart';
 import 'Home.dart';
 import 'Login.dart';
 import 'Reusable/ClubCard.dart';
+import 'Reusable/EventsCard.dart';
 import 'SingUp.dart';
+import 'aboutClub.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
 
 
-      home: Login(),
+      home: aboutClub(),
     );
   }
 }
