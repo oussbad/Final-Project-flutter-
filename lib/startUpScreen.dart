@@ -90,7 +90,7 @@ class _StartUpState extends State<StartUp> {
               },
               style: ElevatedButton.styleFrom(
                 fixedSize: Size(353, 55), // Set the width and height of the button
-                primary: Colors.white, // Set the background color
+                backgroundColor: Colors.white, // Set the background color
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                   side: BorderSide(color: Color(0xFF4D7881)),
