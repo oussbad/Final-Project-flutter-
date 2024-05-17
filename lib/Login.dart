@@ -179,7 +179,7 @@ class _LoginState extends State<Login> {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF4D7881), // Background color
+                          backgroundColor: Color(0xFF4D7881), // Background color
                         ),
                         child: Text(
                           'Login',

@@ -171,7 +171,7 @@ class _SignupState extends State<Signup> {
                           // Implement signup functionality
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF4D7881), // Background color
+                          backgroundColor: Color(0xFF4D7881), // Background color
                         ),
                         child: Text(
                           'Signup',
