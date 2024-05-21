@@ -4,7 +4,9 @@ import 'package:untitled1/startUpScreen.dart';
 import 'Home.dart';
 import 'Login.dart';
 import 'Reusable/ClubCard.dart';
+import 'Reusable/SwitchButton.dart';
 import 'SingUp.dart';
+import 'aboutClub.dart';
 import 'startUpScreen.dart';
 import 'Notifications.dart';
 import 'EmptyNotifications.dart';
@@ -19,7 +21,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: EmptyNotifications(),
+      home: Scaffold(
+        appBar: AppBar(),
+        body: CustomSwitchButton(),
+      ),
     );
   }
 }
