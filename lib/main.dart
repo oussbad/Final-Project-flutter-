@@ -4,6 +4,7 @@ import 'package:untitled1/startUpScreen.dart';
 import 'Home.dart';
 import 'Login.dart';
 import 'Reusable/ClubCard.dart';
+import 'Reusable/Member.dart';
 import 'Reusable/SwitchButton.dart';
 import 'SingUp.dart';
 import 'aboutClub.dart';
@@ -21,7 +22,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: aboutClub(),
+      home: Scaffold(
+        body: aboutClub(),
+      ),
     );
   }
 }
