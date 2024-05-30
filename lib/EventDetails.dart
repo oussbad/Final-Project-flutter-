@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'aboutClub.dart';
+import 'dart:ui';
+
 
 class EventDetailsPage extends StatefulWidget {
   @override
   _EventDetailsPageState createState() => _EventDetailsPageState();
+
 }
 
 class _EventDetailsPageState extends State<EventDetailsPage> {
+  final ValueNotifier<String> buttonText = ValueNotifier<String>('ATTEND EVENT');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -365,7 +371,10 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               top: -10,
                               child: TextButton(
                                 onPressed: () {
-                                  // Add your onPressed logic here
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => aboutClub()),
+                                  );
                                 },
                                 child: Text(
                                   'Join',
@@ -457,21 +466,26 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
               color: Color(0xFF4D7881),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             ),
-            child: TextButton(
-              onPressed: () {
-                // Add your onPressed logic here
+            child: ValueListenableBuilder<String>(
+              valueListenable: buttonText,
+              builder: (context, value, child) {
+                return TextButton(
+                  onPressed: () {
+                    _showBlurDialog(context);
+                  },
+                  child: Text(
+                    value,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontFamily: 'ABeeZee',
+                      fontWeight: FontWeight.w400,
+                      height: 0,
+                      letterSpacing: 1,
+                    ),
+                  ),
+                );
               },
-              child: Text(
-                'ATTEND EVENT',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontFamily: 'ABeeZee',
-                  fontWeight: FontWeight.w400,
-                  height: 0,
-                  letterSpacing: 1,
-                ),
-              ),
             ),
           )
         ),
@@ -479,6 +493,104 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _showBlurDialog(BuildContext context) {
+
+    return showDialog<void>(
+      context: context,
+
+      builder: (BuildContext context) {
+
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            backgroundColor: Colors.transparent,
+            child: Container(
+              padding: EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    spreadRadius: 5,
+                    blurRadius: 10,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 72,
+                    height: 72,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFE0F7FA),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: Image.asset(
+                        "images/check.png",
+                        width: 40,
+                        height: 40,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    'You are attending this Event',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFF616161),
+                      fontSize: 18,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Divider(
+                    color: Colors.grey[300],
+                    thickness: 1,
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      buttonText.value = 'YOU ARE ATTENDING';
+                      Navigator.of(context).pop();
+                      // Add any additional action here if needed
+                    },
+                    child: Text(
+                      'DONE',
+                      style: TextStyle(
+                        color: Color(0xFF4D7881),
+                        fontSize: 14,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Color(0xFF4D7881), backgroundColor: Color(0xFFE0F7FA),
+                      elevation: 0,
+                      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+
+      },
+
     );
   }
 }

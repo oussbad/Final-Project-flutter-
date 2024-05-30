@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Reusable/SwitchButton.dart';
 import 'Reusable/miniEventsCard.dart';
+import 'EditProfile.dart';
 
 class ProfilePage extends StatefulWidget {
   final String profileImagePath;
@@ -50,6 +51,10 @@ class _ProfilePageState extends State<ProfilePage> {
           IconButton(
             icon:  Icon(Icons.mode_edit, size: 20),
             onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => EditProfilePage()),
+              );
             },
           ),
         ],

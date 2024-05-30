@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'SingUp.dart';
 import 'Home.dart';
 
 class Login extends StatefulWidget {
@@ -253,7 +254,10 @@ class _LoginState extends State<Login> {
                         SizedBox(width: 5),
                         GestureDetector(
                           onTap: () {
-                            // Navigation to sign up screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Signup()),
+                            );
                           },
                           child: Text(
                             'Sign up',

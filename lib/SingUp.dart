@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'Login.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -165,7 +166,7 @@ class _SignupState extends State<Signup> {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -222,7 +223,10 @@ class _SignupState extends State<Signup> {
                         SizedBox(width: 5),
                         GestureDetector(
                           onTap: () {
-                            // Navigation to login screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Login()),
+                            );
                           },
                           child: Text(
                             'Login',
