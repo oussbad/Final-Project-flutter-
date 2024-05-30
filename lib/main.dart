@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:  Signup()// ProfilePage(
+        home: EventDetailsPage()
+      // ProfilePage(
       // profileImagePath: 'images/marwan.png',
       // profileName: 'Marouane AIT HAMMOU',
       //  profileEmail: 'marwan@example.com',
