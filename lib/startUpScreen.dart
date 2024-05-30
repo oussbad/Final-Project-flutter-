@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'SingUp.dart';
+import 'Login.dart';
 class StartUp extends StatefulWidget {
   const StartUp({Key? key}) : super(key: key);
 
   @override
   State<StartUp> createState() => _StartUpState();
 }
-
 class _StartUpState extends State<StartUp> {
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _StartUpState extends State<StartUp> {
             child: Opacity(
               opacity: 0.60,
               child: Text(
-                'an app to Discover and join Uemf clubs and communities  & connect with people ',
+                'join Uemf clubs and communities  & connect with people ',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFF1C1C1C),
@@ -57,8 +57,10 @@ class _StartUpState extends State<StartUp> {
           ),
           GestureDetector(
             onTap: () {
-              // Add your onTap functionality here
-              print('Button tapped!');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Signup()),
+              );
             },
             child: Container(
               height: 55,
@@ -85,8 +87,10 @@ class _StartUpState extends State<StartUp> {
             margin: EdgeInsets.all(16.0),
             child: ElevatedButton(
               onPressed: () {
-                // Add your onPressed functionality here
-                print('Button pressed!');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Login()),
+                );
               },
               style: ElevatedButton.styleFrom(
                 fixedSize: Size(353, 55), // Set the width and height of the button

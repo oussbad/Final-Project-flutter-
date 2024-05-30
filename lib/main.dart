@@ -27,8 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: EventDetailsPage()
-      // ProfilePage(
+        home:  StartUp()// ProfilePage(
       // profileImagePath: 'images/marwan.png',
       // profileName: 'Marouane AIT HAMMOU',
       //  profileEmail: 'marwan@example.com',
@@ -36,6 +35,6 @@ class MyApp extends StatelessWidget {
       // bioText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit , trhf  sjiiseu f dhusuf echsig cjvgh s uchcdih vdfnjkvx .',
       // memberImagePath: 'images/itech.png',
       //)
-          );
+    );
   }
 }

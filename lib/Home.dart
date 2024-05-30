@@ -17,8 +17,8 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(top: 30.0),
-              width: 400,
+              margin: EdgeInsets.only(top: 25.0),
+              width: 390,
               height: 173.60,
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
               decoration: BoxDecoration(
