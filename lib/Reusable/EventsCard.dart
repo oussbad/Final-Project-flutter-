@@ -28,7 +28,17 @@ class _EventsCardState extends State<EventsCard> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => EventDetailsPage()),
+          MaterialPageRoute(builder: (context) => EventDetailsPage(
+            eventImage: 'images/eventrotaract.jpg',
+            eventName: 'Night Neon Party',
+            eventDate: 'June 15, 2024',
+            eventTime: '10:00 AM - 2:00 PM',
+            eventLocation: 'Central Park',
+            eventLocationDetails: 'NYC, NY, USA',
+            clubImage: 'images/rotaract.png',
+            clubOrganizerName: 'Rotaract',
+            aboutEventText: '''Join us for an exciting event where you can learn about the latest in technology, meet new people, and have a lot of fun. There will be workshops, networking opportunities, and much more. Don't miss out!''',
+          ),),
         );
       },
       child: Container(

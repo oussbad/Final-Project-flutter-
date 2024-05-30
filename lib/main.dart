@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
 
-        home:  Home()// ProfilePage(
+        home:  StartUp()// ProfilePage(
 
       // profileImagePath: 'images/marwan.png',
       // profileName: 'Marouane AIT HAMMOU',

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'EmptyNotifications.dart';
+import 'Login.dart';
 import 'Notifications.dart';
 import 'Reusable/ClubCard.dart';
 import 'Reusable/EventsCard.dart';
@@ -42,10 +43,10 @@ class _HomeState extends State<Home> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Hello",
+                              "Welcome to",
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 25,
+                                fontSize: 23,
                                 fontFamily: 'DM Sans',
                                 fontWeight: FontWeight.w700,
                               ),
@@ -65,7 +66,7 @@ class _HomeState extends State<Home> {
                         ),
                         Row(
                           children: [
-                            SizedBox(width: 20,),
+                            SizedBox(width: 15,),
                             Stack(
                               alignment: Alignment.center,
                               children: [
@@ -90,7 +91,7 @@ class _HomeState extends State<Home> {
                                       profileEmail: 'marwan@example.com',
                                       profileAddress: '123 Main Street',
                                        bioText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit , trhf  sjiiseu f dhusuf echsig cjvgh s uchcdih vdfnjkvx .',
-                                      memberImagePath: 'images/itech.png',
+                                      memberImagePath: 'images/rotaract.png',
                                       )];
           
                                     // Sélection aléatoire d'un index
@@ -107,7 +108,7 @@ class _HomeState extends State<Home> {
                                 ),
                               ],
                             ),
-                            SizedBox(width: 20,),
+                            SizedBox(width: 15,),
                             Stack(
                               alignment: Alignment.center,
                               children: [
@@ -138,6 +139,40 @@ class _HomeState extends State<Home> {
                                     );
                                   },
                                   icon: Icon(Icons.notifications),
+                                  color: Colors.white,
+                                ),
+                              ],
+                            ),
+                            SizedBox(width: 15,),
+                            Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Opacity(
+                                  opacity: 0.30,
+                                  child: Container(
+                                    width: 44.39,
+                                    height: 32.20,
+                                    decoration: ShapeDecoration(
+                                      color: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(35),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('logged out successfully')),
+                                    );
+                                    // Navigation vers la page sélectionnée aléatoirement
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => Login()),
+                                    );
+                                  },
+                                  icon: Icon(Icons.logout),
                                   color: Colors.white,
                                 ),
                               ],

@@ -371,10 +371,6 @@ class _ProfilePageState extends State<ProfilePage> {
         MiniEventsCard(eventImageUrl: 'https://www.eventbookings.com/wp-content/uploads/2018/03/event-ideas-for-party-eventbookings.jpg',eventDate: 'Sat, Apr 24;1:30 PM',eventTitle: 'Soiree Dj Integration pour annee 2024',eventAddress: 'EUROMED University. Building B3',),
         MiniEventsCard(eventImageUrl: 'https://www.eventbookings.com/wp-content/uploads/2018/03/event-ideas-for-party-eventbookings.jpg',eventDate: 'Sat, Apr 24;1:30 PM',eventTitle: 'Soiree Dj Integration pour annee 2024',eventAddress: 'EUROMED University. Building B3',),
         MiniEventsCard(eventImageUrl: 'https://www.eventbookings.com/wp-content/uploads/2018/03/event-ideas-for-party-eventbookings.jpg',eventDate: 'Sat, Apr 24;1:30 PM',eventTitle: 'Soiree Dj Integration pour annee 2024',eventAddress: 'EUROMED University. Building B3',),
-        MiniEventsCard(eventImageUrl: 'https://www.eventbookings.com/wp-content/uploads/2018/03/event-ideas-for-party-eventbookings.jpg',eventDate: 'Sat, Apr 24;1:30 PM',eventTitle: 'Soiree Dj Integration pour annee 2024',eventAddress: 'EUROMED University. Building B3',),
-        MiniEventsCard(eventImageUrl: 'https://www.eventbookings.com/wp-content/uploads/2018/03/event-ideas-for-party-eventbookings.jpg',eventDate: 'Sat, Apr 24;1:30 PM',eventTitle: 'Soiree Dj Integration pour annee 2024',eventAddress: 'EUROMED University. Building B3',),
-        MiniEventsCard(eventImageUrl: 'https://www.eventbookings.com/wp-content/uploads/2018/03/event-ideas-for-party-eventbookings.jpg',eventDate: 'Sat, Apr 24;1:30 PM',eventTitle: 'Soiree Dj Integration pour annee 2024',eventAddress: 'EUROMED University. Building B3',),
-        MiniEventsCard(eventImageUrl: 'https://www.eventbookings.com/wp-content/uploads/2018/03/event-ideas-for-party-eventbookings.jpg',eventDate: 'Sat, Apr 24;1:30 PM',eventTitle: 'Soiree Dj Integration pour annee 2024',eventAddress: 'EUROMED University. Building B3',)
 
       ],
       ),

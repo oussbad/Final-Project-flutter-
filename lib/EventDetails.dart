@@ -2,11 +2,31 @@ import 'package:flutter/material.dart';
 import 'aboutClub.dart';
 import 'dart:ui';
 
-
 class EventDetailsPage extends StatefulWidget {
+  final String eventImage;
+  final String eventName;
+  final String eventDate;
+  final String eventTime;
+  final String eventLocation;
+  final String eventLocationDetails;
+  final String clubImage;
+  final String clubOrganizerName;
+  final String aboutEventText;
+
+  EventDetailsPage({
+    required this.eventImage,
+    required this.eventName,
+    required this.eventDate,
+    required this.eventTime,
+    required this.eventLocation,
+    required this.eventLocationDetails,
+    required this.clubImage,
+    required this.clubOrganizerName,
+    required this.aboutEventText,
+  });
+
   @override
   _EventDetailsPageState createState() => _EventDetailsPageState();
-
 }
 
 class _EventDetailsPageState extends State<EventDetailsPage> {
@@ -51,7 +71,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
               height: 251,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("images/party.png"),
+                  image: AssetImage(widget.eventImage),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -61,7 +81,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
               child: SizedBox(
                 width: 313,
                 child: Text(
-                  'Integration      Music Concert',
+                  widget.eventName,
                   style: TextStyle(
                     color: Color(0xFF110C26),
                     fontSize: 35,
@@ -148,7 +168,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           child: Opacity(
                             opacity: 0.84,
                             child: Text(
-                              '14 December, 2024',
+                              widget.eventDate,
                               style: TextStyle(
                                 color: Color(0xFF110C26),
                                 fontSize: 16,
@@ -163,7 +183,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           left: 0,
                           top: 30,
                           child: Text(
-                            'Tuesday, 6:00PM - 9:00PM',
+                            widget.eventTime,
                             style: TextStyle(
                               color: Color(0xFF747688),
                               fontSize: 12,
@@ -256,7 +276,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           child: Opacity(
                             opacity: 0.84,
                             child: Text(
-                              'Euromed university',
+                              widget.eventLocation,
                               style: TextStyle(
                                 color: Color(0xFF110C26),
                                 fontSize: 16,
@@ -271,7 +291,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           left: 0,
                           top: 30,
                           child: Text(
-                            'Entre les batiments B1 , B2',
+                            widget.eventLocationDetails,
                             style: TextStyle(
                               color: Color(0xFF747688),
                               fontSize: 12,
@@ -307,7 +327,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                               left: 0,
                               top: 7,
                               child: Text(
-                                'Hands Club',
+                                widget.clubOrganizerName,
                                 style: TextStyle(
                                   color: Color(0xFF0D0C26),
                                   fontSize: 15,
@@ -424,7 +444,7 @@ artificial intelligence, cyber security...''',
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   image: DecorationImage(
-                                    image: AssetImage("images/itech.png"),
+                                    image: AssetImage(widget.clubImage),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -456,7 +476,7 @@ artificial intelligence, cyber security...''',
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 48.0),
               child: Text(
-                'Enjoy your time and get to know people and other students. Drinks will be available for purchase.Drinks will be available for purchase. Drinks will be available for purchase. ',
+                widget.aboutEventText,
                 style: TextStyle(
                   color: Color(0xFF110C26),
                   fontSize: 16,
@@ -468,38 +488,38 @@ artificial intelligence, cyber security...''',
             ),
 
             SizedBox(height: 35),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 80),
-          child:  Container(
-            width: 221,
-            height: 45,
-            decoration: ShapeDecoration(
-              color: Color(0xFF4D7881),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            ),
-            child: ValueListenableBuilder<String>(
-              valueListenable: buttonText,
-              builder: (context, value, child) {
-                return TextButton(
-                  onPressed: () {
-                    _showBlurDialog(context);
-                  },
-                  child: Text(
-                    value,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontFamily: 'ABeeZee',
-                      fontWeight: FontWeight.w400,
-                      height: 0,
-                      letterSpacing: 1,
-                    ),
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 80),
+                child:  Container(
+                  width: 221,
+                  height: 45,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFF4D7881),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                   ),
-                );
-              },
+                  child: ValueListenableBuilder<String>(
+                    valueListenable: buttonText,
+                    builder: (context, value, child) {
+                      return TextButton(
+                        onPressed: () {
+                          _showBlurDialog(context);
+                        },
+                        child: Text(
+                          value,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'ABeeZee',
+                            fontWeight: FontWeight.w400,
+                            height: 0,
+                            letterSpacing: 1,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                )
             ),
-          )
-        ),
             SizedBox(height: 35),
           ],
         ),

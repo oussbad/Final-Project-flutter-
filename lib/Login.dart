@@ -66,7 +66,41 @@ class _LoginState extends State<Login> {
       _isLoading = false;
     });
   }
+  Future<void> _loginV() async {
+    setState(() {
+      _isLoading = true;
+    });
 
+    final String email = _emailController.text;
+    final String password = _passwordController.text;
+    print(email);
+    print(password);
+
+    if (!email.endsWith("@eidia.ueuromed.org")) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Invalid email domain')),
+      );
+      setState(() {
+        _isLoading = false;
+      });
+      return;
+    }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('logged in successfully')),
+    );
+
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Home()),
+      );
+
+
+    setState(() {
+      _isLoading = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -245,7 +279,15 @@ class _LoginState extends State<Login> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: _isLoading ? null : _login,
+                       // onPressed: _isLoading ? null : _login,
+                        onPressed: _isLoading ? null : _loginV,
+
+                        //  onPressed: (){
+                       //    Navigator.push(
+                       //      context,
+                       //      MaterialPageRoute(builder: (context) => Home()),
+                       //    );
+                       //  },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFF4D7881), // Background color
                         ),

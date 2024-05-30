@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:untitled1/Login.dart';
 
+import 'Home.dart';
+
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
 
@@ -26,11 +28,10 @@ class _SignupState extends State<Signup> {
       return;
     }
 
-    email += "@eidia.ueuromed.org";
     final String password = _passwordController.text;
 
     // Your Node.js server URL
-    final String url = 'http://localhost:3000/signup';
+    final String url = 'http://10.0.2.2:3000/signup';
 
     try {
       final http.Response response = await http.post(
@@ -62,6 +63,32 @@ class _SignupState extends State<Signup> {
         SnackBar(content: Text('Error during signup: $e')),
       );
     }
+  }
+  Future<void> _signupV() async {
+    final String fullName = _fullNameController.text.trim();
+    String email = _emailController.text.trim();
+
+    if (!email.endsWith("@eidia.ueuromed.org")) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Invalid email domain')),
+      );
+      return;
+    }
+
+    final String password = _passwordController.text;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Signed up successfully')),
+    );
+    // Your Node.js server URL
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => Home()),
+    );
+
+
+
+
   }
 
   @override
@@ -187,7 +214,7 @@ class _SignupState extends State<Signup> {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -226,7 +253,14 @@ class _SignupState extends State<Signup> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: _signup,
+                       // onPressed: _signup,
+                        onPressed: _signupV,
+                       //  onPressed: (){
+                       //    Navigator.push(
+                       //      context,
+                       //      MaterialPageRoute(builder: (context) => Login()),
+                       //    );
+                       //  },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFF4D7881), // Background color
                         ),
