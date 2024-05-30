@@ -89,6 +89,7 @@ class _NotificationPageState extends State<NotificationPage> {
                   // Handle the view button press
                 },
               ),
+              ReminderCard(notificationTime: '10:00am'),
               ReminderCard(notificationTime: '9:01am'),
               ReminderCard(notificationTime: '9:01am'),
               ReminderCard(notificationTime: '9:01am'),

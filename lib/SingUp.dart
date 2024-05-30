@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -8,6 +10,38 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  Future<void> _signup() async {
+    final String fullName = _fullNameController.text.trim();
+    final String email = _emailController.text.trim();
+    final String password = _passwordController.text;
+
+    // Your Node.js server URL
+    final String url = 'http://localhost:3000/signup';
+
+    try {
+      final http.Response response = await http.post(
+        Uri.parse(url),
+        body: json.encode({'fullName': fullName, 'email': email, 'password': password}),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        // Handle successful signup
+        print('Signup successful!');
+      } else {
+        // Handle signup error
+        print('Signup failed: ${response.body}');
+      }
+    } catch (e) {
+      // Handle network or server errors
+      print('Error during signup: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,18 +180,21 @@ class _SignupState extends State<Signup> {
                 child: Column(
                   children: [
                     TextFormField(
+                      controller: _fullNameController,
                       decoration: InputDecoration(
                         labelText: 'Full Name',
                       ),
                     ),
                     SizedBox(height: 20),
                     TextFormField(
+                      controller: _emailController,
                       decoration: InputDecoration(
                         labelText: 'Email',
                       ),
                     ),
                     SizedBox(height: 20),
                     TextFormField(
+                      controller: _passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: 'Password',
@@ -167,9 +204,7 @@ class _SignupState extends State<Signup> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {
-                          // Implement signup functionality
-                        },
+                        onPressed: _signup,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFF4D7881), // Background color
                         ),

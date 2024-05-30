@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'Reusable/SwitchButton.dart';
+import 'Reusable/miniEventsCard.dart';
 
 class ProfilePage extends StatefulWidget {
   final String profileImagePath;
@@ -44,6 +46,13 @@ class _ProfilePageState extends State<ProfilePage> {
             Navigator.pop(context);
           },
         ),
+        actions: [
+          IconButton(
+            icon:  Icon(Icons.mode_edit, size: 20),
+            onPressed: () {
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
       child: Column(
@@ -169,111 +178,111 @@ class _ProfilePageState extends State<ProfilePage> {
     ),
       SizedBox(height: 20),
       Stack(
-        children: [
-        Container(
-        width: 335,
-        height: 148.75,
-        margin: EdgeInsets.only(left: 25),
-        decoration: ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
-        ),
-        shadows: [
-          BoxShadow(
-          color: Color(0x21BEBEBE),
-          blurRadius: 9,
-          offset: Offset(3, 3),
-          spreadRadius: 0,
-          )
-          ],
-          ),
-          ),
+                children: [
+                Container(
+                width: 335,
+                height: 148.75,
+                margin: EdgeInsets.only(left: 25),
+                decoration: ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14),
+                ),
+                shadows: [
+                  BoxShadow(
+                  color: Color(0x21BEBEBE),
+                  blurRadius: 9,
+                  offset: Offset(3, 3),
+                  spreadRadius: 0,
+                  )
+                  ],
+                  ),
+                  ),
           Positioned(
-          top: 15,
-          left: 40,
-          child: Text(
-          'BIO',
-          style: TextStyle(
-          color: Colors.black,
-          fontSize: 14,
-          fontFamily: 'SF Pro Display',
-          fontWeight: FontWeight.w600,
-          height: 0,
-          ),
-          ),
-          ),
+                  top: 15,
+                  left: 40,
+                  child: Text(
+                  'BIO',
+                  style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w600,
+                  height: 0,
+                  ),
+                  ),
+                  ),
           Positioned(
-          top: 40,
-          left: 40,
-          child: Container(
-          width: 295,
-          child: Text(
-          widget.bioText,
-          style: TextStyle(
-          color: Color(0xFF8D98A1),
-          fontSize: 14,
-          fontFamily: 'Inter',
-          fontWeight: FontWeight.w400,
-          height: 1.5,
-          ),
-          ),
-          ),
-          ),
-          ],
-          ),
+                  top: 40,
+                  left: 40,
+                  child: Container(
+                  width: 295,
+                  child: Text(
+                  widget.bioText,
+                  style: TextStyle(
+                  color: Color(0xFF8D98A1),
+                  fontSize: 14,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w400,
+                  height: 1.5,
+                  ),
+                  ),
+                  ),
+                  ),
+                  ],
+                  ),
           SizedBox(height: 20),
-          Stack(
-          children: [
-          Container(
-          width: 335,
-          height: 91,
-          margin: EdgeInsets.only(left: 25),
-          decoration: ShapeDecoration(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
-          ),
-          shadows: [
-          BoxShadow(
-          color: Color(0x21BEBEBE),
-          blurRadius: 9,
-          offset: Offset(3, 3),
-          spreadRadius: 0,
-          )
-          ],
-          ),
-          ),
+                  Stack(
+                  children: [
+                  Container(
+                  width: 335,
+                  height: 91,
+                  margin: EdgeInsets.only(left: 25),
+                  decoration: ShapeDecoration(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                  ),
+                  shadows: [
+                  BoxShadow(
+                  color: Color(0x21BEBEBE),
+                  blurRadius: 9,
+                  offset: Offset(3, 3),
+                  spreadRadius: 0,
+                  )
+                  ],
+                  ),
+                  ),
           Positioned(
-          top: 10,
-          left: 45,
-          child: Text(
-          'MEMBER IN :',
-          style: TextStyle(
-          color: Colors.black,
-          fontSize: 14,
-          fontFamily: 'Inria Sans',
-          fontWeight: FontWeight.w700,
-          height: 0,
-          ),
-          ),
-          ),
+                top: 10,
+                left: 45,
+                child: Text(
+                'MEMBER IN :',
+                style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontFamily: 'Inria Sans',
+                fontWeight: FontWeight.w700,
+                height: 0,
+                ),
+                ),
+                ),
           Positioned(
-          top: 40,
-          left: 45,
-          child: Container(
-          width: 45,
-          height: 45,
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-          image: DecorationImage(
-          image: AssetImage(widget.memberImagePath), // Use the member image path from the widget parameter
-          fit: BoxFit
-              .fill,
-          ),
-          ),
-          ),
-          ),
+                  top: 40,
+                  left: 45,
+                  child: Container(
+                  width: 45,
+                  height: 45,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                  image: DecorationImage(
+                  image: AssetImage(widget.memberImagePath), // Use the member image path from the widget parameter
+                  fit: BoxFit
+                      .fill,
+                  ),
+                  ),
+                  ),
+                  ),
             Positioned(
               top: 40,
               left: 90,
@@ -352,6 +361,15 @@ class _ProfilePageState extends State<ProfilePage> {
           ],
           ),
         SizedBox(height: 20),
+        CustomSwitchButton(),
+        SizedBox(height: 20),
+        MiniEventsCard(eventImageUrl: 'https://www.eventbookings.com/wp-content/uploads/2018/03/event-ideas-for-party-eventbookings.jpg',eventDate: 'Sat, Apr 24;1:30 PM',eventTitle: 'Soiree Dj Integration pour annee 2024',eventAddress: 'EUROMED University. Building B3',),
+        MiniEventsCard(eventImageUrl: 'https://www.eventbookings.com/wp-content/uploads/2018/03/event-ideas-for-party-eventbookings.jpg',eventDate: 'Sat, Apr 24;1:30 PM',eventTitle: 'Soiree Dj Integration pour annee 2024',eventAddress: 'EUROMED University. Building B3',),
+        MiniEventsCard(eventImageUrl: 'https://www.eventbookings.com/wp-content/uploads/2018/03/event-ideas-for-party-eventbookings.jpg',eventDate: 'Sat, Apr 24;1:30 PM',eventTitle: 'Soiree Dj Integration pour annee 2024',eventAddress: 'EUROMED University. Building B3',),
+        MiniEventsCard(eventImageUrl: 'https://www.eventbookings.com/wp-content/uploads/2018/03/event-ideas-for-party-eventbookings.jpg',eventDate: 'Sat, Apr 24;1:30 PM',eventTitle: 'Soiree Dj Integration pour annee 2024',eventAddress: 'EUROMED University. Building B3',),
+        MiniEventsCard(eventImageUrl: 'https://www.eventbookings.com/wp-content/uploads/2018/03/event-ideas-for-party-eventbookings.jpg',eventDate: 'Sat, Apr 24;1:30 PM',eventTitle: 'Soiree Dj Integration pour annee 2024',eventAddress: 'EUROMED University. Building B3',),
+        MiniEventsCard(eventImageUrl: 'https://www.eventbookings.com/wp-content/uploads/2018/03/event-ideas-for-party-eventbookings.jpg',eventDate: 'Sat, Apr 24;1:30 PM',eventTitle: 'Soiree Dj Integration pour annee 2024',eventAddress: 'EUROMED University. Building B3',),
+        MiniEventsCard(eventImageUrl: 'https://www.eventbookings.com/wp-content/uploads/2018/03/event-ideas-for-party-eventbookings.jpg',eventDate: 'Sat, Apr 24;1:30 PM',eventTitle: 'Soiree Dj Integration pour annee 2024',eventAddress: 'EUROMED University. Building B3',)
 
       ],
       ),

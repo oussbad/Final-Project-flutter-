@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import 'Home.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -8,6 +12,50 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _isRememberMe = false;
+  bool _isLoading = false;
+
+  Future<void> _login() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    final String email = _emailController.text;
+    final String password = _passwordController.text;
+    print(email);
+    print(password);
+
+    final response = await http.post(
+      Uri.parse('http://10.0.2.2:3000/login'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'email': email,
+        'password': password,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Home()),
+      );
+
+    } else {
+      // Handle login failure (e.g., show a message to the user)
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Login failed. Please try again.')),
+      );
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,18 +189,19 @@ class _LoginState extends State<Login> {
             ),
             Image.asset("images/login.png"),
             Container(
-              
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
                     TextFormField(
+                      controller: _emailController,
                       decoration: InputDecoration(
                         labelText: 'University Email',
                       ),
                     ),
                     SizedBox(height: 20),
                     TextFormField(
+                      controller: _passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: 'Password',
@@ -161,7 +210,14 @@ class _LoginState extends State<Login> {
                     SizedBox(height: 20),
                     Row(
                       children: [
-                        Checkbox(value: false, onChanged: (value) {}),
+                        Checkbox(
+                          value: _isRememberMe,
+                          onChanged: (value) {
+                            setState(() {
+                              _isRememberMe = value!;
+                            });
+                          },
+                        ),
                         Text('Remember Me'),
                         Spacer(),
                         GestureDetector(
@@ -177,16 +233,17 @@ class _LoginState extends State<Login> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: _isLoading ? null : _login,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFF4D7881), // Background color
                         ),
-                        child: Text(
+                        child: _isLoading
+                            ? CircularProgressIndicator(color: Colors.white)
+                            : Text(
                           'Login',
                           style: TextStyle(color: Colors.white), // Text color
                         ),
-                      )
-
+                      ),
                     ),
                     SizedBox(height: 20),
                     Row(
