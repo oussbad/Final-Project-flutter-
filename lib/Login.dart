@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'SingUp.dart';
 import 'Home.dart';
+import 'SingUp.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -28,6 +29,16 @@ class _LoginState extends State<Login> {
     print(email);
     print(password);
 
+    if (!email.endsWith("@eidia.ueuromed.org")) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Invalid email domain')),
+      );
+      setState(() {
+        _isLoading = false;
+      });
+      return;
+    }
+
     final response = await http.post(
       Uri.parse('http://10.0.2.2:3000/login'),
       headers: <String, String>{
@@ -44,7 +55,6 @@ class _LoginState extends State<Login> {
         context,
         MaterialPageRoute(builder: (context) => Home()),
       );
-
     } else {
       // Handle login failure (e.g., show a message to the user)
       ScaffoldMessenger.of(context).showSnackBar(
@@ -56,6 +66,7 @@ class _LoginState extends State<Login> {
       _isLoading = false;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {

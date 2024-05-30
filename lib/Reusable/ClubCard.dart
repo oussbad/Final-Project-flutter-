@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/aboutClub.dart';
+
 class ClubCard extends StatefulWidget {
-  const ClubCard({Key? key}) : super(key: key);
+  final String clubName;
+  final int membersCount;
+  final String imagePath;
+
+  const ClubCard({
+    Key? key,
+    required this.clubName,
+    required this.membersCount,
+    required this.imagePath,
+  }) : super(key: key);
 
   @override
   State<ClubCard> createState() => _ClubCardState();
@@ -9,31 +20,58 @@ class ClubCard extends StatefulWidget {
 class _ClubCardState extends State<ClubCard> {
   @override
   Widget build(BuildContext context) {
-    return  Container(
-margin: EdgeInsets.only(left: 10 ,right:10 ),
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AboutClub(
+            clubImage: 'images/gdsc.png',
+            clubName: 'GDSC UEMF',
+            numberOfEvents: 56,
+            numberOfMembers: 120,
+            clubBio: '''The GDSC UEMF club helps students develop their
+technical skills related to Google's latest digital
+technologies and digital development in general.
+The club organizes workshops and carries out projects
+in web development, mobile applications, Arduino,
+artificial intelligence, cyber security...''',
+          )),
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.only(left: 13, right:13),
         width: 200,
         child: Column(
-crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset("images/course-img.png"),
+            SizedBox(
+              width: 200,
+              height: 128,
+              child: Image.asset(
+                widget.imagePath,
+                fit: BoxFit.cover, // To ensure the image covers the box
+              ),
+            ),
+            SizedBox(height: 7,),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-        'Reading Club',
-        style: TextStyle(
-        color: Colors.black,
-        fontSize: 10,
-        fontFamily: 'Inter',
-        fontWeight: FontWeight.w600,
-        height: 0,
-        ), ),
+                  widget.clubName,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 10,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w600,
+                    height: 0,
+                  ),
+                ),
               ],
             ),
+            SizedBox(height: 3,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
                 Text(
                   'see details',
                   style: TextStyle(
@@ -45,7 +83,7 @@ crossAxisAlignment: CrossAxisAlignment.start,
                   ),
                 ),
                 Text(
-                  'Members 700',
+                  'Members ${widget.membersCount}',
                   style: TextStyle(
                     color: Color(0xFF3F3F3F),
                     fontSize: 8,
@@ -55,10 +93,10 @@ crossAxisAlignment: CrossAxisAlignment.start,
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
-      );
-
+      ),
+    );
   }
 }

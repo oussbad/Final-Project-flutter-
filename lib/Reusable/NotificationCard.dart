@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../EventDetails.dart';
+
 class NotificationCard extends StatelessWidget {
   final String clubImageUrl;
   final String clubName;
@@ -119,8 +121,12 @@ class NotificationCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        child: InkWell(
-                          onTap: onViewPressed,
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => EventDetailsPage()),
+                          );},
                           child: Center(
                             child: Text(
                               'VIEW',

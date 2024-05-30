@@ -1,6 +1,21 @@
 import 'package:flutter/material.dart';
+import '../EventDetails.dart';
+
 class EventsCard extends StatefulWidget {
-  const EventsCard({Key? key}) : super(key: key);
+  final String clubName;
+  final String eventName;
+  final String imagePath;
+  final String time;
+  final String date;
+
+  const EventsCard({
+    Key? key,
+    required this.clubName,
+    required this.eventName,
+    required this.imagePath,
+    required this.time,
+    required this.date,
+  }) : super(key: key);
 
   @override
   State<EventsCard> createState() => _EventsCardState();
@@ -9,58 +24,66 @@ class EventsCard extends StatefulWidget {
 class _EventsCardState extends State<EventsCard> {
   @override
   Widget build(BuildContext context) {
-    return
-     Container(
-
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EventDetailsPage()),
+        );
+      },
+      child: Container(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              "images/event1.png",
-              width: 400,
-
-
-
-            )
-            ,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.asset(
+                widget.imagePath,
+                width: 328,
+                height: 127,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 10,),
             Container(
-              margin: EdgeInsets.only(left: 40),
+              margin: EdgeInsets.only(left:30),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    'Reading Club',
+                    widget.eventName,
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 10,
+                      fontSize: 15,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w600,
                       height: 0,
-                    ), ),
+                    ),
+                  ),
                 ],
               ),
             ),
+            SizedBox(height: 5),
             Container(
-              margin: EdgeInsets.only(left: 40,right: 50),
+              margin: EdgeInsets.only(left: 30, right: 50),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-
                   Text(
-                    'see details',
+                    '${widget.time}    ${widget.date}',
                     style: TextStyle(
                       color: Color(0xFF3F3F3F),
-                      fontSize: 8,
+                      fontSize: 11,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w500,
                       height: 0,
                     ),
                   ),
                   Text(
-                    'Members 700',
+                    widget.clubName,
                     style: TextStyle(
                       color: Color(0xFF3F3F3F),
-                      fontSize: 8,
+                      fontSize: 11,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w500,
                       height: 0,
@@ -68,10 +91,11 @@ class _EventsCardState extends State<EventsCard> {
                   ),
                 ],
               ),
-            )
+            ),
+            SizedBox(height: 15,),
           ],
         ),
-      );
-
+      ),
+    );
   }
 }

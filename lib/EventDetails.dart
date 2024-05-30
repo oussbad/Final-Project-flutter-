@@ -373,7 +373,18 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                                 onPressed: () {
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => aboutClub()),
+                                    MaterialPageRoute(builder: (context) => AboutClub(
+                                      clubImage: 'images/gdsc.png',
+                                      clubName: 'GDSC UEMF',
+                                      numberOfEvents: 56,
+                                      numberOfMembers: 120,
+                                      clubBio: '''The GDSC UEMF club helps students develop their
+technical skills related to Google's latest digital
+technologies and digital development in general.
+The club organizes workshops and carries out projects
+in web development, mobile applications, Arduino,
+artificial intelligence, cyber security...''',
+                                    )),
                                   );
                                 },
                                 child: Text(

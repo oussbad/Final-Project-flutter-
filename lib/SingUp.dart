@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'Login.dart';
+import 'package:untitled1/Login.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -17,7 +17,16 @@ class _SignupState extends State<Signup> {
 
   Future<void> _signup() async {
     final String fullName = _fullNameController.text.trim();
-    final String email = _emailController.text.trim();
+    String email = _emailController.text.trim();
+
+    if (!email.endsWith("@eidia.ueuromed.org")) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Invalid email domain')),
+      );
+      return;
+    }
+
+    email += "@eidia.ueuromed.org";
     final String password = _passwordController.text;
 
     // Your Node.js server URL
@@ -30,16 +39,28 @@ class _SignupState extends State<Signup> {
         headers: {'Content-Type': 'application/json'},
       );
 
-      if (response.statusCode == 200) {
-        // Handle successful signup
-        print('Signup successful!');
+      if (response.statusCode == 201) {
+        // Handle successful signup and navigate to login page
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Signup successful! Please log in.')),
+        );
+        Navigator.pushReplacementNamed(context, '/login'); // Replace with your login route
+      } else if (response.statusCode == 409) {
+        // Handle user already exists error
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('User already exists')),
+        );
       } else {
-        // Handle signup error
-        print('Signup failed: ${response.body}');
+        // Handle other errors
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Signup failed: ${response.body}')),
+        );
       }
     } catch (e) {
       // Handle network or server errors
-      print('Error during signup: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error during signup: $e')),
+      );
     }
   }
 
@@ -166,7 +187,7 @@ class _SignupState extends State<Signup> {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -223,6 +244,7 @@ class _SignupState extends State<Signup> {
                         SizedBox(width: 5),
                         GestureDetector(
                           onTap: () {
+                            // Navigation to login screen
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => Login()),

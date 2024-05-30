@@ -4,23 +4,59 @@ import 'dart:ui'; // Needed for the BackdropFilter
 import 'Reusable/EventsCard.dart';
 import 'Reusable/SwitchButton.dart';
 
-class aboutClub extends StatefulWidget {
-  const aboutClub({Key? key}) : super(key: key);
+class AboutClub extends StatefulWidget {
+  final String clubName;
+  final String clubImage;
+  final int numberOfEvents;
+  final int numberOfMembers;
+  final String clubBio;
+
+  const AboutClub({
+    Key? key,
+    required this.clubName,
+    required this.clubImage,
+    required this.numberOfEvents,
+    required this.numberOfMembers,
+    required this.clubBio,
+  }) : super(key: key);
 
   @override
-  State<aboutClub> createState() => _aboutClubState();
+  State<AboutClub> createState() => _AboutClubState();
 }
 
-class _aboutClubState extends State<aboutClub> {
+
+class _AboutClubState extends State<AboutClub> {
+  bool isMember = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          widget.clubName,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w600,
+            height: 0.06,
+          ),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.keyboard_arrow_left, size: 35),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Stack(
         children: [
           Column(
             children: [
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -28,12 +64,12 @@ class _aboutClubState extends State<aboutClub> {
                       width: 86,
                       height: 86,
                       decoration: ShapeDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("images/event1.png"),
+                        image:  DecorationImage(
+                          image: AssetImage(widget.clubImage),
                           fit: BoxFit.fill,
                         ),
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(
+                          side: const BorderSide(
                             width: 3,
                             strokeAlign: BorderSide.strokeAlignOutside,
                             color: Color(0xFF4D7881),
@@ -45,23 +81,23 @@ class _aboutClubState extends State<aboutClub> {
                     Column(
                       children: [
                         Text(
-                          '+56',
+                          '+${widget.numberOfEvents}',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color(0xFF212121),
-                            fontSize: 13,
+                            fontSize: 16,
                             fontFamily: 'ABeeZee',
                             fontWeight: FontWeight.w400,
                             height: 0,
                             letterSpacing: -0.33,
                           ),
                         ),
-                        Text(
+                        const Text(
                           'events',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Color(0xFF212121),
-                            fontSize: 13,
+                            fontSize: 16,
                             fontFamily: 'ABeeZee',
                             fontWeight: FontWeight.w400,
                             height: 0,
@@ -73,23 +109,23 @@ class _aboutClubState extends State<aboutClub> {
                     Column(
                       children: [
                         Text(
-                          '+56',
+                          '+${widget.numberOfMembers}',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color(0xFF212121),
-                            fontSize: 13,
+                            fontSize: 16,
                             fontFamily: 'ABeeZee',
                             fontWeight: FontWeight.w400,
                             height: 0,
                             letterSpacing: -0.33,
                           ),
                         ),
-                        Text(
-                          'events',
+                        const Text(
+                          'Members',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Color(0xFF212121),
-                            fontSize: 13,
+                            fontSize: 16,
                             fontFamily: 'ABeeZee',
                             fontWeight: FontWeight.w400,
                             height: 0,
@@ -102,16 +138,16 @@ class _aboutClubState extends State<aboutClub> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'About the Club',
                       style: TextStyle(
                         color: Color(0xFF9A9A9A),
-                        fontSize: 14,
+                        fontSize: 16,
                         fontStyle: FontStyle.italic,
                         fontFamily: 'ABeeZee',
                         fontWeight: FontWeight.w400,
@@ -121,20 +157,23 @@ class _aboutClubState extends State<aboutClub> {
                     ),
                     TextButton(
                       onPressed: () {
-                        _showBlurDialog(context);
+                        _showBlurDialog(context, isMember);
+                        setState(() {
+                          isMember = !isMember;
+                        });
                       },
                       style: TextButton.styleFrom(
-                        backgroundColor: Color(0xFF4D7881),
-                        minimumSize: Size(116, 32),
+                        backgroundColor: const Color(0xFF4D7881),
+                        minimumSize: const Size(116, 32),
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
                       child: Text(
-                        'Join',
+                        isMember ? 'Join' : 'Leave',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 14,
                           fontStyle: FontStyle.italic,
@@ -149,15 +188,10 @@ class _aboutClubState extends State<aboutClub> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.symmetric(vertical: 1),
+                margin: const EdgeInsets.symmetric(vertical: 1),
                 child: Text(
-                  '''The GDSC UEMF club helps students develop their
-technical skills related to Google's latest digital
-technologies and digital development in general.
-The club organizes workshops and carries out projects
-in web development, mobile applications, Arduino,
-artificial intelligence, cyber security...''',
-                  style: TextStyle(
+                  widget.clubBio,
+                  style: const TextStyle(
                     color: Color(0xFF212121),
                     fontSize: 14,
                     fontFamily: 'ABeeZee',
@@ -167,21 +201,41 @@ artificial intelligence, cyber security...''',
                   ),
                 ),
               ),
+              SizedBox(height: 20,),
               CustomSwitchButton(),
+              SizedBox(height: 20,),
               SizedBox(
-                height: 500,
+                height: 320,
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      EventsCard(),
-                      EventsCard(),
-                      EventsCard(),
-                      EventsCard(),
-                      EventsCard(),
+                        EventsCard(
+                          eventName: 'conference SE',
+                        clubName: 'GDSC Club',
+                        imagePath: 'images/eventgdsc.jpg',
+                        time: '3pm',
+                        date: '19-07-2024',
+                        ),
+                      EventsCard(
+                        eventName: 'Night Neon Party',
+                        clubName: 'Rotaract Club',
+                        imagePath: 'images/eventrotaract.jpg',
+                        time: '3pm',
+                        date: '19-07-2024',
+                      ),
+                      EventsCard(
+                        eventName: 'Traditional Gala',
+                        clubName: 'Hands Club',
+                        imagePath: 'images/eventHnads.jpg',
+                        time: '3pm',
+                        date: '19-07-2024',
+                      ),
+
                     ],
                   ),
                 ),
               ),
+              SizedBox(height: 20,)
             ],
           ),
         ],
@@ -191,7 +245,7 @@ artificial intelligence, cyber security...''',
 
 
 
-  Future<void> _showBlurDialog(BuildContext context) {
+  Future<void> _showBlurDialog(BuildContext context ,bool isMember) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -236,7 +290,7 @@ artificial intelligence, cyber security...''',
                   ),
                   SizedBox(height: 20),
                   Text(
-                    'You are now A MEMBER',
+                    isMember ? 'You are now A MEMBER' : 'You Left the club',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xFF616161),
